@@ -48,10 +48,10 @@ const SectionFooter = () => {
           <Col lg={6}>
             <small className="d-block">
               Designed and built with all the love by{" "}
-              <span className="text-danger">PAIR 051 DTS-REA2A</span>
+              <span className="text-danger">PAIR 51 DTS-REA2A</span>
             </small>
             <small className="text-start">
-              Copyright &copy; {new Date().getFullYear()} Movies 051 Indonesia.
+              Copyright &copy; {new Date().getFullYear()} Movies 51 Indonesia.
               All rights reserved.
             </small>
           </Col>

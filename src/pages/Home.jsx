@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -13,6 +14,7 @@ var heroImage = {
   backgroundRepeat: "no-repeat",
 };
 const SectionHome = () => {
+  const [email, setEmail] = useState('')
   return (
     <>
       <Container
@@ -36,9 +38,10 @@ const SectionHome = () => {
                 aria-label="Example text with button addon"
                 aria-describedby="basic-addon1"
                 placeholder="Alamat Email"
+                
               />
 
-              <Button variant="danger" id="button-addon1">
+              <Button as={Link} to="/register"  variant="danger" id="button-addon1">
                 Buat Akun
               </Button>
             </InputGroup>

@@ -53,7 +53,8 @@ const CardMovie = (props) => {
                 <Card.Img
                   variant="top"
                   src={`${baseUrlForMovie}${movie.poster_path}`}
-                  alt={movie.title} loading="lazy"
+                  alt={movie.title}
+                  loading="lazy"
                 />
               </Card>
             </Col>
@@ -86,7 +87,12 @@ const ModalMovie = (props) => {
       centered
     >
       <Modal.Body className="bg-black">
-<img src={`https://image.tmdb.org/t/p/original/${props.item.backdrop_path}`} alt="" className="img-fluid" loading="lazy"/>
+        <img
+          src={`https://image.tmdb.org/t/p/original/${props.item.backdrop_path}`}
+          alt=""
+          className="img-fluid"
+          loading="lazy"
+        />
         <h4 className="fw-bold mt-3">{props.item.original_title}</h4>
         <ul class="list-inline list-separator small">
           <li class="list-inline-item">

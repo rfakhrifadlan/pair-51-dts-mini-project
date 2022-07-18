@@ -3,7 +3,7 @@ import tmdb from "../apis/tmdb";
 import Carousel from "react-bootstrap/Carousel";
 
 const CarouselMovie = () => {
-  const baseUrlForMovie = "https://image.tmdb.org/t/p/w200";
+  const baseUrlForMovie = "https://image.tmdb.org/t/p/original";
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchDataMovies = async () => {
