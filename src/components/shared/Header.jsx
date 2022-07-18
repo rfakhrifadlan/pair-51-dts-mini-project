@@ -14,7 +14,15 @@ const Header = () => {
   return (
     <Navbar className="bg-transparent fixed-top" expand="lg">
       <Container>
-        <Navbar.Brand className="fw-bold text-white">Movies 051</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <img
+            src="assets/logo.png"
+            width="150"
+            // height="30"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <div className="justify-content-center">
           <Navbar.Collapse id="basic-navbar-nav">
@@ -37,14 +45,9 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
         </div>
-        <Button
-          variant="light"
-          size="sm"
-          className="rounded-4"
-          onClick={logoutHandler}
-        >
-          Sign Out
-        </Button>
+        <Nav.Link as={Link} to="/login" className="btn btn-danger text-light">
+          Masuk
+        </Nav.Link>
       </Container>
     </Navbar>
   );
