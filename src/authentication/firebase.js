@@ -1,90 +1,58 @@
-// Di sini kita akan import beberapa fungsi dari package firebase
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
 import {
   getAuth,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBORhnaXiwgfOOIlM06UNqfcv5_FBgw6iY",
-  authDomain: "tainted-development.firebaseapp.com",
-  projectId: "tainted-development",
-  storageBucket: "tainted-development.appspot.com",
-  messagingSenderId: "672379756589",
-  appId: "1:672379756589:web:216c8b5c1ac64e036058a4",
+  apiKey: "AIzaSyAPsGfmJd1Hf5e-IU_VfxxtdLdjHf0fM4o",
+  authDomain: "dts-movie51.firebaseapp.com",
+  projectId: "dts-movie51",
+  storageBucket: "dts-movie51.appspot.com",
+  messagingSenderId: "708085648856",
+  appId: "1:708085648856:web:9508d92f120064dd0536ad",
+  measurementId: "G-8B1GQNVQSR",
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
-const register = async (email, password) => {
-  // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth
+const registerByEmail = async (email, pass) => {
   try {
-    const response = await createUserWithEmailAndPassword(
+    const getUserRegis = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      pass
+    );
+    console.log("Berhasil Login", getUserRegis.user);
+  } catch (e) {
+    console.log(e);
+    console.log("error auth ", e.code);
+    console.log("error msg ", e.message);
+  }
+};
+
+const loginByEmail = async (email, password) => {
+  try {
+    const getUserLogin = await signInWithEmailAndPassword(
       auth,
       email,
       password
     );
-
-    console.log(
-      "User yang teregistrasi dan berhasil login adalah",
-      response.user
-    );
-  } catch (err) {
-    console.log(err);
-    console.log("error code auth", err.code);
-    console.log("error message auth", err.message);
+    console.log("Logged", getUserLogin.user);
+  } catch (e) {
+    console.log(e);
+    console.log("error auth ", e.code);
+    console.log("error msg ", e.message);
   }
 };
 
-const login = async (email, password) => {
-  // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+const logout = () => {};
 
-    console.log("User yang berhasil login adalah", userCredential.user);
-  } catch (err) {
-    console.log(err);
-
-    // Sama dengan register
-    console.log("error code auth", err.code);
-    console.log("error message auth", err.message);
-  }
-};
-
-// Fungsi untuk reset Password
-const resetPassword = async (email) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-
-    console.log("Link Password Send");
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// Fungsi untuk sign out
-const logout = async () => {
-  try {
-    await signOut(auth);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// Export seluruh fungsi yang dibuat + auth
-export {
-  auth, // Nanti akan digunakan untuk hooks react-hooks-firebase
-  register,
-  login,
-  resetPassword,
-  logout,
-};
+export { auth, registerByEmail, loginByEmail, logout };
