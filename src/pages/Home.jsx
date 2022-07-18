@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 var heroImage = {
   background: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(${"assets/img/hero-netflix.jpg"})`,
   backgroundSize: "cover",
@@ -24,15 +26,23 @@ const SectionHome = () => {
             pun. Batalkan kapan pun.
           </h1>
           <p>
-            Siap menonton? Silakan tekan tombol <strong>buat akun</strong> di bawah ini untuk membuat atau memulai lagi
-            keanggotaanmu.
+            Siap menonton? Silakan tekan tombol <strong>buat akun</strong> di
+            bawah ini untuk membuat atau memulai lagi keanggotaanmu.
           </p>
-          <Button className="rounded-4 me-3" variant="danger" size="lg">
-            Buat Akun 
-          </Button>
-          <Button className="rounded-4" variant="light" size="lg">
-            Masuk
-          </Button>
+
+          <Col className="mx-auto" lg={8}>
+            <InputGroup className="mb-3" size="lg">
+              <Form.Control
+                aria-label="Example text with button addon"
+                aria-describedby="basic-addon1"
+                placeholder="Alamat Email"
+              />
+
+              <Button variant="danger" id="button-addon1">
+                Buat Akun
+              </Button>
+            </InputGroup>
+          </Col>
         </Col>
       </Container>
     </>
@@ -52,12 +62,20 @@ const SectionContent = () => {
             </p>
           </Col>
           <Col lg={6}>
-            <img src="assets/img/tv.png" className="img-fluid" alt="Nikmati di TV-mu" />
+            <img
+              src="assets/img/tv.png"
+              className="img-fluid"
+              alt="Nikmati di TV-mu"
+            />
           </Col>
         </Row>
         <Row className="d-flex align-items-center">
           <Col lg={6}>
-            <img src="assets/img/mobile-0819.jpg" className="img-fluid" alt="Download acara TV" />
+            <img
+              src="assets/img/mobile-0819.jpg"
+              className="img-fluid"
+              alt="Download acara TV"
+            />
           </Col>
           <Col lg={6}>
             <h3 className="display-4 fw-bold">
@@ -71,15 +89,18 @@ const SectionContent = () => {
         </Row>
         <Row className="d-flex align-items-center">
           <Col lg={6}>
-            <h3 className="display-4 fw-bold">
-            Tonton di mana pun.
-            </h3>
+            <h3 className="display-4 fw-bold">Tonton di mana pun.</h3>
             <p>
-            Streaming film dan acara TV tak terbatas di ponsel, tablet, laptop, dan TV-mu.
+              Streaming film dan acara TV tak terbatas di ponsel, tablet,
+              laptop, dan TV-mu.
             </p>
           </Col>
           <Col lg={6}>
-            <img src="assets/img/device-pile-id.png" className="img-fluid" alt="Download acara TV" />
+            <img
+              src="assets/img/device-pile-id.png"
+              className="img-fluid"
+              alt="Download acara TV"
+            />
           </Col>
         </Row>
       </Container>
