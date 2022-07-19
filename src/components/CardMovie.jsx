@@ -7,7 +7,6 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import tmdb from "../apis/tmdb";
 import LazyImage from "./LazyImage";
-import axios from "axios";
 
 const CardMovie = (props) => {
   const [modalShow, setModalShow] = useState(false);
@@ -36,7 +35,7 @@ const CardMovie = (props) => {
   if (isLoading)
     return (
       <>
-        <div className="justify-content-center">
+        <div className="d-flex align-items-center justify-content-center">
           <Spinner animation="border" role="status" variant="danger">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
@@ -71,7 +70,7 @@ const CardMovie = (props) => {
   else {
     return (
       <>
-        <div className="justify-content-center">
+        <div className="d-flex align-items-center justify-content-center">
           <Alert variant="dagner">Something wrong, please reload again!</Alert>
         </div>
       </>

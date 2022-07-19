@@ -2,13 +2,15 @@ import React from "react";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/esm/Container";
 import CardMovie from "../components/CardMovie";
-import CarouselMovie from "../components/CarouselMovie";
-
+import OverviewMovie from "../components/OverviewMovie";
 const Movie = () => {
   return (
     <>
       <PageLayout>
-        <Container>
+        
+          
+      <OverviewMovie/>
+        <Container style={{marginTop:'100px'}}>
         <h3 className="fw-bold mt-3">Trending Now</h3>
         <div className="cards-container">
           <CardMovie url="/trending/all/week"/>
