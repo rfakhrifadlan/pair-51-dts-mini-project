@@ -42,7 +42,7 @@ const SectionHome = () => {
               />
 
               <Button as={Link} to="/register"  variant="danger" id="button-addon1">
-                Buat Akun
+                Sign In
               </Button>
             </InputGroup>
           </Col>

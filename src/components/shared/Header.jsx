@@ -60,7 +60,7 @@ const Header = () => {
           </svg>
         </Nav.Link>
         <Button variant="danger" as={Link}
-          to="/register">Register</Button>
+          to="/register">Sign Up</Button>
         </div>
       </Container>
     </Navbar>
