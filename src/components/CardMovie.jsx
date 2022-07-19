@@ -6,11 +6,14 @@ import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import tmdb from "../apis/tmdb";
+import LazyImage from "./LazyImage";
+import axios from "axios";
 
 const CardMovie = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const [modalData, setModalData] = useState([]);
   const urlMovie = props.url;
+  const slice = props.slice ? props.slice : 10;
   const baseUrlForMovie = "https://image.tmdb.org/t/p/w200";
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +23,7 @@ const CardMovie = (props) => {
     const fetchDataMovies = async () => {
       try {
         const responseDariTMDB = await tmdb.get(urlMovie);
-        setMovies(responseDariTMDB.data.results.slice(0, 10));
+        setMovies(responseDariTMDB.data.results.slice(0, slice));
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -29,6 +32,8 @@ const CardMovie = (props) => {
       }
     };
     fetchDataMovies();
+    
+    console.log(urlMovie)
   }, []);
   if (isLoading)
     return (
@@ -45,16 +50,14 @@ const CardMovie = (props) => {
       <>
         {movies.map((movie) => {
           return (
-            <Col lg={2} className="m-3" key={movie.id}>
+            <Col lg={2} className="m-2" key={movie.id}>
               <Card
                 className="rounded-4 border-0 card-hover"
                 onClick={() => setModalShow(true, setModalData(movie))}
               >
-                <Card.Img
-                  variant="top"
+                <LazyImage
                   src={`${baseUrlForMovie}${movie.poster_path}`}
                   alt={movie.title}
-                  loading="lazy"
                 />
               </Card>
             </Col>
@@ -89,7 +92,7 @@ const ModalMovie = (props) => {
       <Modal.Body className="bg-black">
         <img
           src={`https://image.tmdb.org/t/p/original/${props.item.backdrop_path}`}
-          alt=""
+          alt={props.item.original_title}
           className="img-fluid"
           loading="lazy"
         />

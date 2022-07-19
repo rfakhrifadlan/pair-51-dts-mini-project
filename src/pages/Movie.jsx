@@ -2,17 +2,12 @@ import React from "react";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/esm/Container";
 import CardMovie from "../components/CardMovie";
+import CarouselMovie from "../components/CarouselMovie";
 
 const Movie = () => {
   return (
     <>
       <PageLayout>
-      <Container className="d-flex justify-content-center align-items-center vh-50">
-        <div className="text-center">
-        <h1 className="display-4 fw-bold">Explore your favorite movies.</h1>
-        <p>We provide the best experience when you watch alone, or with friends and family</p>
-        </div>
-      </Container>
         <Container>
         <h3 className="fw-bold mt-3">Trending Now</h3>
         <div className="cards-container">

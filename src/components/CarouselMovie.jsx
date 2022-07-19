@@ -22,9 +22,8 @@ const CarouselMovie = () => {
         {movies.map((movie) => {
           return (
             <Carousel.Item>
-              <img src={`${baseUrlForMovie}${movie.backdrop_path}`} alt="{movie.original_title}"  className="d-block w-100"/>
+              <img src={`${baseUrlForMovie}${movie.backdrop_path}`} alt="{movie.original_title}" loading="lazy"  className="d-block w-100"/>
               <Carousel.Caption>
-                
               <h3 className="display-4 fw-bold">{movie.original_title}</h3>
                 <h5>{movie.overview}</h5>
               </Carousel.Caption>

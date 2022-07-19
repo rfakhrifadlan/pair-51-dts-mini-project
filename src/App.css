@@ -48,7 +48,13 @@ body {
   content: "/";
   opacity: .4;
 }
-
+.img-placeholder {
+  content: 'Placeholder!';
+  width: 400px;
+  height: 300px;
+  border: 1px solid red;
+  background-color: silver;
+}
 .cards-container {
   display: flex;
   padding: 1rem;

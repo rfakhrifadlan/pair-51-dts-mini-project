@@ -14,8 +14,7 @@ const Header = () => {
   return (
     <Navbar className="bg-transparent fixed-top" expand="lg">
       <Container>
-        <Navbar.Brand as={Link}
-                to="/">
+        <Navbar.Brand as={Link} to="/">
           <img
             src="assets/logo.png"
             width="150"
@@ -24,10 +23,11 @@ const Header = () => {
             alt="React Bootstrap logo"
           />
         </Navbar.Brand>
+        
+        <div className="d-lg-flex justify-content-start">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <div>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto justify-content-start">
+            <Nav className="me-auto">
               <Nav.Link
                 as={Link}
                 to="/"
@@ -45,10 +45,28 @@ const Header = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          
         </div>
-        <Nav.Link as={Link} to="/register" className="btn btn-danger text-light">
-        Register
+        <div className="d-lg-flex justify-content-end">
+        <Nav.Link as={Link} to="/search">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#FFF"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg>
         </Nav.Link>
+        <Nav.Link
+          as={Link}
+          to="/register"
+          className="btn btn-danger text-light"
+        >
+          Register
+        </Nav.Link>
+        </div>
       </Container>
     </Navbar>
   );
