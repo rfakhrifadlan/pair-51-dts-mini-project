@@ -32,9 +32,7 @@ const CardMovie = (props) => {
       }
     };
     fetchDataMovies();
-    
-    console.log(urlMovie)
-  }, []);
+  }, [urlMovie]);
   if (isLoading)
     return (
       <>
