@@ -21,8 +21,8 @@ const CardMovie = (props) => {
     setIsLoading(true);
     const fetchDataMovies = async () => {
       try {
-        const responseDariTMDB = await tmdb.get(urlMovie);
-        setMovies(responseDariTMDB.data.results.slice(0, slice));
+        const response = await tmdb.get(urlMovie);
+        setMovies(response.data.results.slice(0, slice));
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -93,7 +93,11 @@ const ModalMovie = (props) => {
           className="img-fluid"
           loading="lazy"
         />
-        <h4 className="fw-bold mt-3">{props.item.original_title}</h4>
+        <h3 className="fw-bold mt-3">
+          {props.item.original_title
+            ? props.item.original_title
+            : props.item.title}
+        </h3>
         <ul class="list-inline list-separator small">
           <li class="list-inline-item">
             Popularity : {(props.item.popularity / 100).toFixed(2)}
@@ -107,8 +111,19 @@ const ModalMovie = (props) => {
         </ul>
         <p className="fw-bold">Overview</p>
         <p className="mt-3">{props.item.overview}</p>
+
         <div className="float-end">
           <Button variant="danger" className="me-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-play-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+            </svg>{" "}
             Play Trailer
           </Button>
           <Button onClick={props.onHide} variant="light">

@@ -8,8 +8,8 @@ const CarouselMovie = () => {
   useEffect(() => {
     const fetchDataMovies = async () => {
       try {
-        const responseDariTMDB = await tmdb.get("/movie/popular");
-        setMovies(responseDariTMDB.data.results);
+        const response = await tmdb.get("/movie/popular");
+        setMovies(response.data.results);
       } catch (err) {
         console.log(err);
       }

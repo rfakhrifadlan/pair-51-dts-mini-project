@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
 import { Link, useNavigate } from "react-router-dom";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 const Header = () => {
   const navigate = useNavigate();
   const logoutHandler = () => {
@@ -16,7 +17,7 @@ const Header = () => {
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
-            src="assets/logo.png"
+            src={`${BASE_URL}/assets/logo.png`}
             width="150"
             // height="30"
             className="d-inline-block align-top"

@@ -16,7 +16,7 @@ const LazyImage = (imageProps) => {
   }, [shouldLoad, placeholderRef]);
 
   return shouldLoad ? (
-    <img {...imageProps}  className="img-fluid" loading="lazy"/>
+    <img {...imageProps}  className="img-fluid" style={{borderRadius:'8px'}} loading="lazy"/>
   ) : (
     <div className="img-placeholder" ref={placeholderRef} />
   );
