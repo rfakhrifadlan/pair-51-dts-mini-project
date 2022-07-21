@@ -11,19 +11,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-
-  apiKey: "AIzaSyBQjYVxkcNPErJdMZ52MEp-A3jwkRE64hE",
-
-  authDomain: "movies-051.firebaseapp.com",
-
-  projectId: "movies-051",
-
-  storageBucket: "movies-051.appspot.com",
-
-  messagingSenderId: "406937222012",
-
-  appId: "1:406937222012:web:d9455e2714b4229f6a82f9"
-
+  apiKey: "AIzaSyAPsGfmJd1Hf5e-IU_VfxxtdLdjHf0fM4o",
+  authDomain: "dts-movie51.firebaseapp.com",
+  projectId: "dts-movie51",
+  storageBucket: "dts-movie51.appspot.com",
+  messagingSenderId: "708085648856",
+  appId: "1:708085648856:web:9508d92f120064dd0536ad",
+  measurementId: "G-8B1GQNVQSR",
 };
 
 // Initialize Firebase
@@ -53,9 +47,10 @@ const loginByEmail = async (email, password) => {
     );
     console.log("Logged", getUserLogin.user);
   } catch (e) {
-    console.log(e);
-    console.log("error auth ", e.code);
-    console.log("error msg ", e.message);
+    // console.log(e);
+    // console.log("error auth ", e.code);
+    // console.log("error msg ", e.message);
+    alert("Email / Password Salah");
   }
 };
 

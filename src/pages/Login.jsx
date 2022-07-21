@@ -53,8 +53,9 @@ const Login = () => {
   };
 
   const loginHandler = () => {
-    loginByEmail(account.email, account.password);
-    navigate("/movie");
+    const test = loginByEmail(account.email, account.password);
+    console.log(test);
+    // navigate("/movie");
   };
 
   return (
