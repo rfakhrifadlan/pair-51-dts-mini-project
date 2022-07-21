@@ -40,7 +40,7 @@ const Header = () => {
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
-            src={`assets/logo.png`}
+            src={`${process.env.REACT_APP_BASE_URL}/assets/logo.png`}
             width="150"
             // height="30"
             className="d-inline-block align-top"
@@ -48,32 +48,8 @@ const Header = () => {
           />
         </Navbar.Brand>
 
-        <div>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link
-                as={Link}
-                to="/"
-                className="text-decoration-none text-white"
-              >
-                Home
-              </Nav.Link>
-              {!user ? (
-                ""
-              ) : (
-                <Nav.Link
-                  as={Link}
-                  to="/movie"
-                  className="text-decoration-none text-white"
-                >
-                  Explore Movies
-                </Nav.Link>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </div>
-        <div className="d-lg-flex justify-content-end">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <div className="order-lg-2 d-flex justify-content-between">
           {!user && tombolAuth.jenis == "register" ? (
             <Button variant="danger" as={Link} to="/register">
               {tombolAuth.caption}
@@ -97,6 +73,31 @@ const Header = () => {
               </Button>
             </>
           )}
+        </div>
+        
+        <div className="order-lg-1 justify-content-md-center">
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link
+                as={Link}
+                to="/"
+                className="text-decoration-none text-white"
+              >
+                Home
+              </Nav.Link>
+              {!user ? (
+                ""
+              ) : (
+                <Nav.Link
+                  as={Link}
+                  to="/movie"
+                  className="text-decoration-none text-white"
+                >
+                  Explore Movies
+                </Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
         </div>
       </Container>
     </Navbar>
