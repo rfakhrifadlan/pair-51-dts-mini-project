@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import tmdb from "../apis/tmdb";
 import LazyImage from "./LazyImage";
+import { Link } from "react-router-dom";
 
 const CardMovie = (props) => {
   const [modalShow, setModalShow] = useState(false);
@@ -49,7 +50,7 @@ const CardMovie = (props) => {
           return (
             <Col lg={2} className="m-2" key={movie.id}>
               <Card
-                className="rounded-4 border-0 card-hover"
+                className="border-0 card-hover" style={{borderRadius:'8px'}}
                 onClick={() => setModalShow(true, setModalData(movie))}
               >
                 <LazyImage
@@ -98,14 +99,14 @@ const ModalMovie = (props) => {
             ? props.item.original_title
             : props.item.title}
         </h3>
-        <ul class="list-inline list-separator small">
-          <li class="list-inline-item">
+        <ul className="list-inline list-separator small">
+          <li className="list-inline-item">
             Popularity : {(props.item.popularity / 100).toFixed(2)}
           </li>
-          <li class="list-inline-item">
+          <li className="list-inline-item">
             Release Date : {props.item.release_date}
           </li>
-          <li class="list-inline-item">
+          <li className="list-inline-item">
             Vote Average : {(props.item.vote_average / 2).toFixed(2)}
           </li>
         </ul>
@@ -113,19 +114,11 @@ const ModalMovie = (props) => {
         <p className="mt-3">{props.item.overview}</p>
 
         <div className="float-end">
-          <Button variant="danger" className="me-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-play-fill"
-              viewBox="0 0 16 16"
-            >
-              <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-            </svg>{" "}
-            Play Trailer
-          </Button>
+          
+          <Button variant="danger" className="me-3" size="md" as={Link} to={`/detailmovie/${props.item.id}`}>
+                        
+                        Detail Movie
+                      </Button>
           <Button onClick={props.onHide} variant="light">
             Close
           </Button>
