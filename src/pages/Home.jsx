@@ -34,7 +34,7 @@ const SectionHome = () => {
               pun. Batalkan kapan pun.
             </h1>
             <p>
-              Siap menonton? Silakan tekan tombol <strong>buat akun</strong> di
+              Siap menonton? Silakan tekan tombol <strong>Sign In</strong> di
               bawah ini untuk membuat atau memulai lagi keanggotaanmu.
             </p>
 
