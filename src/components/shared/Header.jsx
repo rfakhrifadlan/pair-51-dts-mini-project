@@ -22,13 +22,12 @@ const Header = () => {
     if (loading) {
       return;
     }
-    
-      if (user) {
-        setTombolAuth({ jenis: "keluar", caption: "Sign Out" });
-      } else {
-        setTombolAuth({ jenis: "register", caption: "Sign Up" });
-      }
-    
+
+    if (user) {
+      setTombolAuth({ jenis: "keluar", caption: "Sign Out" });
+    } else {
+      setTombolAuth({ jenis: "register", caption: "Sign Up" });
+    }
   }, [user]);
 
   const logoutHandler = () => {
@@ -41,7 +40,7 @@ const Header = () => {
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
-            src={`${BASE_URL}/assets/logo.png`}
+            src={`assets/logo.png`}
             width="150"
             // height="30"
             className="d-inline-block align-top"
