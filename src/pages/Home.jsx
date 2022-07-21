@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import { auth } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 var heroImage = {
   background: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(${"assets/img/hero-netflix.jpg"})`,
@@ -16,6 +18,8 @@ var heroImage = {
 };
 const SectionHome = () => {
   const [email, setEmail] = useState("");
+  const [user] = useAuthState(auth);
+  const hours = new Date().getHours();
   return (
     <>
       <Container
@@ -23,35 +27,50 @@ const SectionHome = () => {
         style={heroImage}
         className="vh-100 d-flex align-items-center"
       >
-        <Col className="mx-auto text-white text-center" lg={8}>
-          <h1 className="display-4 fw-bold">
-            Film, acara TV tak terbatas, dan lebih banyak lagi.Tonton di mana
-            pun. Batalkan kapan pun.
-          </h1>
-          <p>
-            Siap menonton? Silakan tekan tombol <strong>buat akun</strong> di
-            bawah ini untuk membuat atau memulai lagi keanggotaanmu.
-          </p>
+        {!user ? (
+          <Col className="mx-auto text-white text-center" lg={8}>
+            <h1 className="display-4 fw-bold">
+              Film, acara TV tak terbatas, dan lebih banyak lagi.Tonton di mana
+              pun. Batalkan kapan pun.
+            </h1>
+            <p>
+              Siap menonton? Silakan tekan tombol <strong>buat akun</strong> di
+              bawah ini untuk membuat atau memulai lagi keanggotaanmu.
+            </p>
 
-          <Col className="mx-auto" lg={8}>
-            <InputGroup className="mb-3" size="lg">
-              <Form.Control
-                aria-label="Example text with button addon"
-                aria-describedby="basic-addon1"
-                placeholder="Alamat Email"
-              />
+            <Col className="mx-auto" lg={8}>
+              <InputGroup className="mb-3" size="lg">
+                <Form.Control
+                  aria-label="Example text with button addon"
+                  aria-describedby="basic-addon1"
+                  placeholder="Alamat Email"
+                />
 
-              <Button
-                as={Link}
-                to="/register"
-                variant="danger"
-                id="button-addon1"
-              >
-                Sign In
-              </Button>
-            </InputGroup>
+                <Button
+                  as={Link}
+                  to="/login"
+                  variant="danger"
+                  id="button-addon1"
+                >
+                  Sign In
+                </Button>
+              </InputGroup>
+            </Col>
           </Col>
-        </Col>
+        ) : (
+          <Col className="mx-auto text-white text-center" lg={12}>
+            <p>
+              Hi, {user.email}. Selamat{" "}
+              {hours < 12
+                ? "Pagi"
+                : hours >= 12 && hours <= 17
+                ? "Sore"
+                : "Malam"}
+              .
+            </p>
+            <h1 className="display-4 fw-bold">Lihat apa selanjutnya?</h1>
+          </Col>
+        )}
       </Container>
     </>
   );

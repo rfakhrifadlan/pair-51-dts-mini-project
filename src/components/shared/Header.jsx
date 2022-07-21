@@ -22,10 +22,14 @@ const Header = () => {
     if (loading) {
       return;
     }
-    if (user) {
-      setTombolAuth({ jenis: "keluar", caption: "Logout" });
-    }
-  }, [loading, user, navigate, tombolAuth]);
+    
+      if (user) {
+        setTombolAuth({ jenis: "keluar", caption: "Sign Out" });
+      } else {
+        setTombolAuth({ jenis: "register", caption: "Sign Up" });
+      }
+    
+  }, [user]);
 
   const logoutHandler = () => {
     logout();
@@ -56,7 +60,7 @@ const Header = () => {
               >
                 Home
               </Nav.Link>
-              {tombolAuth.jenis == "register" ? (
+              {!user ? (
                 ""
               ) : (
                 <Nav.Link
@@ -71,7 +75,7 @@ const Header = () => {
           </Navbar.Collapse>
         </div>
         <div className="d-lg-flex justify-content-end">
-          {tombolAuth.jenis == "register" ? (
+          {!user && tombolAuth.jenis == "register" ? (
             <Button variant="danger" as={Link} to="/register">
               {tombolAuth.caption}
             </Button>
@@ -90,7 +94,7 @@ const Header = () => {
               </Nav.Link>
               <Button variant="danger" onClick={logoutHandler}>
                 {/* {tombolAuth.caption} */}
-                Logout
+                Sign Out
               </Button>
             </>
           )}
