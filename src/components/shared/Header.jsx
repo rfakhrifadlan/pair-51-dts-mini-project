@@ -3,9 +3,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const logoutHandler = () => {
     navigate("/login");
@@ -13,6 +14,7 @@ const Header = () => {
 
   return (
     <Navbar className="bg-transparent fixed-top" expand="lg">
+      {/* {console.log(location.pathname)} */}
       <Container>
         <Navbar.Brand href="#home">
           <img
