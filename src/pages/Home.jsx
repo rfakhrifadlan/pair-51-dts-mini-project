@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/Container";
@@ -7,6 +7,9 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+// import { auth } from "../authentication/firebase";
+// import { useAuthState } from "react-firebase-hooks/auth";
+
 var heroImage = {
   background: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(${"assets/img/hero-netflix.jpg"})`,
   backgroundSize: "cover",
@@ -14,7 +17,17 @@ var heroImage = {
   backgroundRepeat: "no-repeat",
 };
 const SectionHome = () => {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
+  // const navigate = useNavigate();
+  // const [user, loading, error] = useAuthState(auth);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate("/movie");
+  //     console.log(user);
+  //   }
+  // }, []);
+
   return (
     <>
       <Container
@@ -38,10 +51,14 @@ const SectionHome = () => {
                 aria-label="Example text with button addon"
                 aria-describedby="basic-addon1"
                 placeholder="Alamat Email"
-                
               />
 
-              <Button as={Link} to="/register"  variant="danger" id="button-addon1">
+              <Button
+                as={Link}
+                to="/register"
+                variant="danger"
+                id="button-addon1"
+              >
                 Sign In
               </Button>
             </InputGroup>

@@ -4,6 +4,10 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -53,6 +57,60 @@ const loginByEmail = async (email, password) => {
   }
 };
 
-const logout = () => {};
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-export { auth, registerByEmail, loginByEmail, logout };
+const providerGoogle = new GoogleAuthProvider();
+const providerGithub = new GithubAuthProvider();
+
+const loginByGoogle = async () => {
+  signInWithPopup(auth, providerGoogle)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      console.log(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+};
+const loginByGithub = async () => {
+  signInWithPopup(auth, providerGithub)
+    .then((result) => {
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      console.log(error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ...
+    });
+};
+
+export {
+  auth,
+  registerByEmail,
+  loginByEmail,
+  logout,
+  loginByGoogle,
+  loginByGithub,
+};

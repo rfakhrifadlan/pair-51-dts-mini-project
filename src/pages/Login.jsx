@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/Container";
 import LoginWrapper from "../components/LoginCom/LoginWrapper";
 import LoginBase from "../components/LoginCom/LoginForm";
 import LoginTitle from "../components/LoginCom/LoginTitle";
 import LoginInput from "../components/LoginCom/LoginInput";
-import LoginButton from "../components/LoginCom/LoginButton";
 import LoginText from "../components/LoginCom/LoginText";
-import LoginLink from "../components/LoginCom/LoginLink";
 import LoginCaptcha from "../components/LoginCom/LoginFormCaptcha";
-// import LoginError from "../components/LoginCom/LoginNotifError";
+import Button from "react-bootstrap/Button";
+import { auth, loginByEmail } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import LoginBySosmed from "../components/LoginCom/LoginBySosmed";
 
 const Login = () => {
   var heroImage = {
@@ -18,6 +20,43 @@ const Login = () => {
     backgroundPosition: "center center",
     backgroundRepeat: "no-repeat",
   };
+
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    if (user) {
+      navigate("/movie");
+    }
+  }, [loading, user, navigate]);
+
+  const [account, setAccount] = useState({
+    email: "",
+    password: "",
+  });
+
+  const fieldEmailChange = (event) => {
+    setAccount({
+      ...account,
+      email: event.target.value,
+    });
+  };
+
+  const fieldPasswordChange = (event) => {
+    setAccount({
+      ...account,
+      password: event.target.value,
+    });
+  };
+
+  const loginHandler = () => {
+    loginByEmail(account.email, account.password);
+    navigate("/movie");
+  };
+
   return (
     <>
       <PageLayout>
@@ -27,31 +66,35 @@ const Login = () => {
           className="vh-100 d-flex align-items-center"
         >
           <LoginWrapper>
-            {/* <LoginBase onSubmit={handleSubmit} method="POST"> */}
-            <LoginBase method="POST">
+            <LoginBase>
               <LoginTitle>Sign In</LoginTitle>
-              {/* {error ? <SignFormError>{error}</SignFormError> : null} */}
               <LoginInput
                 type="text"
                 placeholder="Email Address"
-                // value={emailAddress}
-                value=""
-                // onChange={({ target }) => setEmailAddress(target.value)}
+                value={account.email}
+                onChange={fieldEmailChange}
               />
               <LoginInput
                 type="password"
                 placeholder="Password"
                 autoComplete="off"
-                // value={password}
-                value=""
-                // onChange={({ target }) => setPassword(target.value)}
+                value={account.password}
+                onChange={fieldPasswordChange}
               />
-              {/* <LoginButton disabled={IsInvalid}>Sign In</LoginButton> */}
-              <LoginButton>Sign In</LoginButton>
+              <Button className="btn btn-danger mb-2" onClick={loginHandler}>
+                Sign In
+              </Button>
               <LoginText>
                 New to Netflix?
-                <LoginLink href="/register">Sign up now.</LoginLink>
+                <Link
+                  to="/register"
+                  className="sign-form-link"
+                  style={{ textDecoration: "none" }}
+                >
+                  Sign up now.
+                </Link>
               </LoginText>
+              <LoginBySosmed />
               <LoginCaptcha>
                 This page is protected by Google reCAPTCHA to ensure you are not
                 a bot.
@@ -63,4 +106,5 @@ const Login = () => {
     </>
   );
 };
+
 export default Login;
