@@ -9,19 +9,21 @@ import {
   GithubAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAPsGfmJd1Hf5e-IU_VfxxtdLdjHf0fM4o",
-  authDomain: "dts-movie51.firebaseapp.com",
-  projectId: "dts-movie51",
-  storageBucket: "dts-movie51.appspot.com",
-  messagingSenderId: "708085648856",
-  appId: "1:708085648856:web:9508d92f120064dd0536ad",
-  measurementId: "G-8B1GQNVQSR",
+
+  apiKey: "AIzaSyBQjYVxkcNPErJdMZ52MEp-A3jwkRE64hE",
+
+  authDomain: "movies-051.firebaseapp.com",
+
+  projectId: "movies-051",
+
+  storageBucket: "movies-051.appspot.com",
+
+  messagingSenderId: "406937222012",
+
+  appId: "1:406937222012:web:d9455e2714b4229f6a82f9"
+
 };
 
 // Initialize Firebase
