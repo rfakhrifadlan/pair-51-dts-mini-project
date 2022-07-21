@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import CardMovie from "../components/CardMovie";
-import Feedback from "react-bootstrap/Feedback";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 const Search = () => {
   const [input, setInput] = useState("");
   const result = document.getElementById("result"); 
   const onInputChange = (event) => {
     setInput(event.target.value);
   };
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
 
   return (
     <>
