@@ -11,6 +11,10 @@ import Card from "react-bootstrap/esm/Card";
 import LazyImage from "../components/LazyImage";
 import ListCardMovie from "../components/ListCardMovie";
 import tmdb from "../apis/tmdb";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -22,6 +26,19 @@ const DetailMovie = () => {
   const [actors, setactors] = useState([]);
   const [trailer, setTrailer] = useState([]);
   let params = useParams();
+
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
+
   useEffect(() => {
     setIsLoading(true);
     const getMovie = async () => {
@@ -173,26 +190,26 @@ const DetailMovie = () => {
                 </div>
               </Col>
               <Col lg={4}>
-                <div  className="ps-5">
-                <p className="fw-bold mt-3">Original Title</p>
-                <p>{detail.original_title}</p>
+                <div className="ps-5">
+                  <p className="fw-bold mt-3">Original Title</p>
+                  <p>{detail.original_title}</p>
 
-                <p className="fw-bold">Status</p>
-                <p>{detail.status}</p>
+                  <p className="fw-bold">Status</p>
+                  <p>{detail.status}</p>
 
-                <p className="fw-bold">Budget</p>
-                <p>{formatter.format(detail.budget)}</p>
+                  <p className="fw-bold">Budget</p>
+                  <p>{formatter.format(detail.budget)}</p>
 
-                <p className="fw-bold">Revenue</p>
+                  <p className="fw-bold">Revenue</p>
 
-                <p>{formatter.format(detail.revenue)}</p>
+                  <p>{formatter.format(detail.revenue)}</p>
                 </div>
               </Col>
             </Row>
             <h3 className="fw-bold">Recommendations</h3>
             <div className="cards-container">
-          <ListCardMovie url="/trending/all/week"/>
-        </div>
+              <ListCardMovie url="/trending/all/week" />
+            </div>
           </Container>
         </PageLayout>
       </>
