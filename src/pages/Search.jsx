@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageLayout from "../layouts/PageLayout";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
@@ -8,12 +8,29 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import CardMovie from "../components/CardMovie";
 import Feedback from "react-bootstrap/Feedback";
+
+import { useNavigate } from "react-router-dom";
+import { auth } from "../authentication/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 const Search = () => {
   const [input, setInput] = useState("");
-  const result = document.getElementById("result"); 
+  const result = document.getElementById("result");
   const onInputChange = (event) => {
     setInput(event.target.value);
   };
+
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, loading, navigate]);
 
   return (
     <>
@@ -39,10 +56,10 @@ const Search = () => {
         </Container>
         <Container>
           <h3 className="fw-bold mb-3">Popular Search</h3>
-          
+
           <div id="result"></div>
           <Row className="justify-content-center">
-            <CardMovie 
+            <CardMovie
               url={`search/multi?language=en-US&page=1&include_adult=false&query=${
                 input ? input : "a"
               }`}
