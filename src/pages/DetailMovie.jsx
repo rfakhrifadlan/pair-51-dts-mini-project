@@ -84,7 +84,7 @@ const DetailMovie = () => {
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
-              minHeight: "800px",
+              minHeight: "1100px",
             }}
             className="d-flex align-items-center"
             key={detail.id}
